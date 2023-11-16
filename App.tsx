@@ -1,40 +1,22 @@
+import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, Text, View } from 'react-native';
-import { useState, useEffect } from 'react';
-import NewItem from './components/NewItem';
-import Item from './components/Item';
+import Home from './screens/Home';
+import Scan from './screens/Scan';
+import Recipes from './screens/Recipes';
 
 export default function App() {
 
-  interface Food {
-    name: string;
-    exp: string;
-    hasExp: boolean;
-  };
-
-  const [items, setItems] = useState<Food[]>([]);
-
-  useEffect(() => {
-    console.log("testing")
-  }, [])
+  const Tab = createMaterialTopTabNavigator();
 
   return (
-    <ScrollView
-      style={{
-        padding: 10,
-        backgroundColor: 'whitesmoke'
-      }}
-    >
-      {items.map((item, i) => (
-        <View key={i}>
-          {Item(item.name, item.exp, item.hasExp, () => (
-            setItems(items.filter((_, index) => index !== i))
-            ))}
-        </View>
-      ))}
-
-      {NewItem(items, setItems)}
-      {/* <Calendar/> */}
-    </ScrollView>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="Items" component={Home} />
+          <Tab.Screen name="Scan" component={Scan} />
+          <Tab.Screen name="Recipes" component={Recipes} />
+        </Tab.Navigator>
+      </NavigationContainer>
   )
 }

@@ -7,7 +7,7 @@ const Item = (name: string, exp: string, hasExp: boolean, handler: (item:any)=>v
             style={{
                 width: '100%',
                 height: 64,
-                backgroundColor: 'rgba(128, 128, 128, 0.8)',
+                backgroundColor: 'rgba(128, 128, 128, 0.5)',
                 borderRadius: 10,
                 display: 'flex',
                 flexDirection: 'row',
@@ -41,7 +41,6 @@ const Item = (name: string, exp: string, hasExp: boolean, handler: (item:any)=>v
                 style={{
                     width: 50,
                     height: '100%',
-                    backgroundColor: 'lightcoral',
                     borderTopRightRadius: 10,
                     borderBottomRightRadius: 10,
                     alignItems: 'center'
@@ -54,7 +53,7 @@ const Item = (name: string, exp: string, hasExp: boolean, handler: (item:any)=>v
                         height: '100%'
                     }}
                 >
-                    -
+                    X
                 </Text>
             </Pressable>
         </View>

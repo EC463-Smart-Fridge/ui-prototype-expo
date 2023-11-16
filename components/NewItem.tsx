@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import {Dispatch, SetStateAction, useState} from 'react'
-import { Text, TextInput, View, Pressable } from "react-native"
+import { Text, TextInput, View, Pressable, TouchableOpacity } from "react-native"
 import { Calendar } from 'react-native-calendars'
 
 const NewItem = (items: any[], setItems:Dispatch<SetStateAction<any[]>>) => {
@@ -43,7 +43,7 @@ const NewItem = (items: any[], setItems:Dispatch<SetStateAction<any[]>>) => {
                     }}
                 >
                 </TextInput>
-                <Pressable onPress={() => setOpen(!open)}>
+                <TouchableOpacity onPress={() => setOpen(!open)}>
                     <Text
                         style={{
                             height: '100%',
@@ -54,13 +54,12 @@ const NewItem = (items: any[], setItems:Dispatch<SetStateAction<any[]>>) => {
                     >
                         {hasDate ? date : "Add Date"}
                     </Text>
-                </Pressable>
-                <Pressable
+                </TouchableOpacity>
+                <TouchableOpacity
                     onPress={inputHandler}
                     style={{
                         width: 50,
                         height: '100%',
-                        backgroundColor: 'deepskyblue',
                         borderTopRightRadius: 10,
                         borderBottomRightRadius: 10,
                         alignItems: 'center'
@@ -74,9 +73,9 @@ const NewItem = (items: any[], setItems:Dispatch<SetStateAction<any[]>>) => {
                             opacity: 0.75,
                         }}
                     >
-                        Add
+                        +
                     </Text>
-                </Pressable>
+                </TouchableOpacity>
             </View>
             {open ? 
                 <Calendar
