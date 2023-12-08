@@ -22,6 +22,9 @@
           "sortKeyName": "sk",
           "sortKeyType": "S"
         }
+      },
+      "api": {
+        "awsomefridge": {}
       }
     }
   }
