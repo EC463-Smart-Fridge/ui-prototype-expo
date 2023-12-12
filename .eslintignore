@@ -1,2 +1,6 @@
 amplify-codegen-temp/models/models
+<<<<<<< HEAD
+src/models/models
+=======
 amplify-codegen-temp\models\models
+>>>>>>> 3e922f1824736552d2a4f194e5ecc751c3d5f7f8
