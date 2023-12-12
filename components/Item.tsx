@@ -58,12 +58,16 @@ const Item = ({name, exp, hasExp, category, calories, quantity, handler}: Props)
                     borderTopRightRadius: 10,
                     borderBottomRightRadius: 10,
                     alignItems: 'center',
-                    paddingVertical: 'auto',}} 
+                    paddingVertical: 'auto',
+                    marginVertical: 'auto',
+                }} 
             >
                 <Text
                     style={{
                         textAlignVertical: 'center',
                         marginVertical: 'auto',
+                        paddingVertical: 'auto',
+                        verticalAlign: 'middle',
                     }}
                 >
                     X
