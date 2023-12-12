@@ -4,6 +4,8 @@
 export const getUserItems = /* GraphQL */ `
   query GetUserItems($pk: String!) {
     getUserItems(pk: $pk) {
+      pk
+      sk
       UPC
       name
       category

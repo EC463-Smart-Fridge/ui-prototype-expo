@@ -1,13 +1,3 @@
-input CreateFridgebaseInput {
-	pk: String!
-	sk: String!
-}
-
-input DeleteFridgebaseInput {
-	pk: String!
-	sk: String!
-}
-
 type Fridgebase {
 	pk: String!
 	sk: String!
@@ -19,6 +9,8 @@ type FridgebaseConnection {
 }
 
 type Item {
+	pk: String
+	sk: String
 	UPC: String
 	name: String
 	category: String
@@ -251,10 +243,26 @@ type User {
 	email: String!
 }
 
+input addItemInput {
+	pk: String!
+	UPC: String
+	name: String!
+	category: String
+	calories: String
+	img_url: String
+	exp_date: Int
+	quantity: Int
+}
+
+input deleteItemInput {
+	pk: String!
+	sk: String!
+}
+
 type Mutation {
-	createFridgebase(input: CreateFridgebaseInput!): Fridgebase
+	addItem(input: addItemInput!): Fridgebase
 	updateFridgebase(input: UpdateFridgebaseInput!): Fridgebase
-	deleteFridgebase(input: DeleteFridgebaseInput!): Fridgebase
+	deleteItem(input: deleteItemInput!): Fridgebase
 }
 
 type Query {
@@ -265,9 +273,9 @@ type Query {
 
 type Subscription {
 	onCreateFridgebase(pk: String, sk: String): Fridgebase
-		@aws_subscribe(mutations: ["createFridgebase"])
+		@aws_subscribe(mutations: ["addItem"])
 	onUpdateFridgebase(pk: String, sk: String): Fridgebase
 		@aws_subscribe(mutations: ["updateFridgebase"])
 	onDeleteFridgebase(pk: String, sk: String): Fridgebase
-		@aws_subscribe(mutations: ["deleteFridgebase"])
+		@aws_subscribe(mutations: ["deleteItem"])
 }
