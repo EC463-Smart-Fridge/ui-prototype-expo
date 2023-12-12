@@ -1,83 +1,140 @@
-import { Button, View, Image, TouchableOpacity, Text, StyleSheet } from "react-native";
-import * as ImagePicker from 'expo-image-picker';
-import { Camera, CameraType } from 'expo-camera';
-import { useState, useRef } from "react";
+import React, { useState, useEffect } from 'react';
+import { Text, View, StyleSheet, Pressable } from 'react-native';
+import { BarCodeScanner } from 'expo-barcode-scanner';
 
 export default function Scan() {
-    const [image, setImage] = useState(null);
-    const [type, setType] = useState(CameraType.back);
-    const [permission, requestPermission] = Camera.useCameraPermissions();
-    const cameraRef = useRef(null);
+  const [hasPermission, setHasPermission] = useState(null);
+  const [scanType, setScanType] = useState("barcode")
+  const [scanned, setScanned] = useState(false);
+  const [barcodeData, setBarcodeData] = useState(null);
 
-    const pickImage = async () => {
-        // Existing image picker logic
-    };
+  useEffect(() => {
+    (async () => {
+      const { status } = await BarCodeScanner.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
 
-    const takePicture = async () => {
-        if (cameraRef.current) {
-            const photo = await cameraRef.current.takePictureAsync();
-            console.log(photo);
-            setImage(photo.uri);
-        }
-    };
-
-    function toggleCameraType() {
-        setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
+  const handleBarCodeScanned = ({ type, data }) => {
+    if (!scanned) {
+      console.log(`Bar code with type ${type} and data ${data} has been scanned!`);
+      setScanned(true);
+        setBarcodeData(`Bar code with type ${type} and data ${data} has been scanned!`);
+      setTimeout(() => setScanned(false), 3000); // 3 seconds delay
     }
+    // console.log("scanning")
+  };
 
-    if (!permission?.granted) {
-        return (
-            <View style={styles.container}>
-                <Text>No access to camera</Text>
-                <Button title="Grant Permission" onPress={() => requestPermission()} />
-            </View>
-        );
-    }
+  if (hasPermission === null) {
+    return <Text>Requesting for camera permission</Text>;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
 
-    return (
-        <View style={styles.container}>
-            <Camera style={styles.camera} ref={cameraRef} type={type}>
-
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-                        <Text>Flip Camera</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.button} onPress={takePicture}>
-                        <Text>Take Picture</Text>
-                    </TouchableOpacity>
-                </View>
-            </Camera>
-
-            {image && <Image source={{ uri: image }} style={styles.previewImage} />}
+  return (
+    <View style={styles.container}>
+        <View style={styles.scanTypes}>
+            <Pressable 
+                onPress={() => setScanType("barcode")}
+                style={[styles.scanType, scanType == "barcode" ?  {backgroundColor: 'skyblue'} : {}]}>
+                <Text>Barcode</Text>
+            </Pressable>
+            <Pressable 
+                onPress={() => setScanType("image")}
+                style={[styles.scanType, scanType == "image" ? {backgroundColor: 'skyblue'} : {}]}>
+                <Text>Image</Text>
+            </Pressable>
+            <Pressable 
+                onPress={() => setScanType("receipt")}
+                style={[styles.scanType, scanType == "receipt" ? {backgroundColor: 'skyblue'} : {}]}>
+                <Text>Receipt</Text>
+            </Pressable>
         </View>
-    );
+        {scanType == "barcode" && <BarCodeScanner
+        onBarCodeScanned={handleBarCodeScanned}
+        style={styles.scanner}
+        />}
+      {/* <BarCodeScanner
+        onBarCodeScanned={handleBarCodeScanned}
+        style={styles.scanner}
+      /> */}
+      <View style={styles.outputWrapper}>
+            <Text style={styles.barcodeOutput}>{barcodeData}</Text>
+      </View>
+      {/* <View>
+            <Pressable 
+                onPress={() => setBarcodeData(null)}
+                style={styles.scanType}>
+                <Text>Clear</Text>
+            </Pressable>
+
+      </View> */}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+  container: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  scanner: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  scanTypes: {
+    width: '100%',
+    borderRadius: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 20,
+  },
+  scanType:{
+    width: '30%',
+    backgroundColor: 'rgb(255, 255, 255)',
+    shadowColor: 'rgba(0, 0, 0, 0.5)',
+    shadowRadius: 10,
+    shadowOpacity: 1,
+    shadowOffset: {
+        width: 8,
+        height: 8,
     },
-    camera: {
+    elevation: 5,
+
+    paddingVertical: 10,
+    borderRadius: 10,
+    alignItems: 'center',
+    textAlignVertical: 'center',
+    height: '100%'
+  },
+  barcodeOutput: {
         width: '100%',
-        height: '70%' // Adjust as needed
-    },
-    buttonContainer: {
-        flex: 1,
-        backgroundColor: 'transparent',
-        flexDirection: 'row',
-        margin: 20,
-        justifyContent: 'space-around'
-    },
-    button: {
-        flex: 0.1,
-        alignSelf: 'flex-end',
+        height: 50,
+        backgroundColor: 'rgb(255, 255, 255)',
+        shadowColor: 'rgba(0, 0, 0, 0.5)',
+        shadowRadius: 10,
+        shadowOpacity: 1,
+        shadowOffset: {
+            width: 8,
+            height: 8,
+        },
+        elevation: 5,
+        borderRadius: 10,
+        display: 'flex',
+        justifyContent: 'center',
         alignItems: 'center',
-    },
-    previewImage: {
-        width: 200,
-        height: 200
-    }
+        padding: 8,
+  },
+  outputWrapper: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
+  },
 });
