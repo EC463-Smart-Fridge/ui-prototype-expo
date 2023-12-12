@@ -69,6 +69,20 @@ export const schema = {
         "Item": {
             "name": "Item",
             "fields": {
+                "pk": {
+                    "name": "pk",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "sk": {
+                    "name": "sk",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "UPC": {
                     "name": "UPC",
                     "isArray": false,
@@ -114,7 +128,7 @@ export const schema = {
                 "quantity": {
                     "name": "quantity",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 }
@@ -177,5 +191,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "34b967cfcefda7daaf8c3c1b6e4ec86a"
+    "version": "14e6305066d3230ea9d87ab6cbdab566"
 };

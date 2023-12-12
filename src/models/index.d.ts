@@ -49,23 +49,27 @@ export declare type FridgebaseConnection = LazyLoading extends LazyLoadingDisabl
 export declare const FridgebaseConnection: (new (init: ModelInit<FridgebaseConnection>) => FridgebaseConnection)
 
 type EagerItem = {
+  readonly pk?: string | null;
+  readonly sk?: string | null;
   readonly UPC?: string | null;
   readonly name?: string | null;
   readonly category?: string | null;
   readonly calories?: string | null;
   readonly img_url?: string | null;
   readonly exp_date?: number | null;
-  readonly quantity?: string | null;
+  readonly quantity?: number | null;
 }
 
 type LazyItem = {
+  readonly pk?: string | null;
+  readonly sk?: string | null;
   readonly UPC?: string | null;
   readonly name?: string | null;
   readonly category?: string | null;
   readonly calories?: string | null;
   readonly img_url?: string | null;
   readonly exp_date?: number | null;
-  readonly quantity?: string | null;
+  readonly quantity?: number | null;
 }
 
 export declare type Item = LazyLoading extends LazyLoadingDisabled ? EagerItem : LazyItem

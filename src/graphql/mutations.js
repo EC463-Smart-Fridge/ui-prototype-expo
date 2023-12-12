@@ -1,9 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createFridgebase = /* GraphQL */ `
-  mutation CreateFridgebase($input: CreateFridgebaseInput!) {
-    createFridgebase(input: $input) {
+export const addItem = /* GraphQL */ `
+  mutation AddItem($input: addItemInput!) {
+    addItem(input: $input) {
       pk
       sk
       __typename
@@ -19,9 +19,9 @@ export const updateFridgebase = /* GraphQL */ `
     }
   }
 `;
-export const deleteFridgebase = /* GraphQL */ `
-  mutation DeleteFridgebase($input: DeleteFridgebaseInput!) {
-    deleteFridgebase(input: $input) {
+export const deleteItem = /* GraphQL */ `
+  mutation DeleteItem($input: deleteItemInput!) {
+    deleteItem(input: $input) {
       pk
       sk
       __typename
