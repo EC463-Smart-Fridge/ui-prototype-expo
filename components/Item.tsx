@@ -1,7 +1,123 @@
 import React from 'react'
-import { Text, View, Pressable } from "react-native"
+import { Text, View, Pressable , StyleSheet} from "react-native"
 
-const Item = (name: string, exp: string, hasExp: boolean, handler: (item:any)=>void) => {
+// interface Food {
+//     name: string;
+//     exp: string;
+//     hasExp: boolean;
+//     category: string;
+//     calories: number;
+//     quantity: number;
+// };
+interface Props {
+    name: string;
+    exp: string;
+    hasExp: boolean;
+    category: string;
+    calories: number;
+    quantity: number;
+    handler: (item:any)=>void;
+}
+
+const Item = ({name, exp, hasExp, category, calories, quantity, handler}: Props) => {
+    return (
+        <View 
+            style={styles.container}
+        >
+            <View style={styles.info}>                
+                <Text style={styles.input}>
+                    {name}
+                </Text>
+                {hasExp && 
+                    <Text style={styles.date}>
+                        Expires: {exp}
+                    </Text>
+                }
+                {category != '' && 
+                    <Text style={styles.category}>
+                        Category: {category}
+                    </Text>
+                }
+                {(quantity != 0) && 
+                    <Text style={styles.quantity}>
+                        Quantity: {quantity}
+                    </Text>
+                }
+                {calories != 0 && 
+                    <Text style={styles.calories}>
+                        Calories: {calories}
+                    </Text>
+                }
+            </View>
+            
+
+            <Pressable 
+                onPress={handler}
+                style={{width: 50,
+                    height: '100%',
+                    borderTopRightRadius: 10,
+                    borderBottomRightRadius: 10,
+                    alignItems: 'center',
+                    paddingVertical: 'auto',}} 
+            >
+                <Text
+                    style={{
+                        textAlignVertical: 'center',
+                        marginVertical: 'auto',
+                    }}
+                >
+                    X
+                </Text>
+            </Pressable>
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    container: {
+        width: '100%',
+        backgroundColor: 'lightgray',
+        opacity: 0.5, 
+        borderRadius: 10,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 8,
+        marginVertical: 2,
+    },
+    input: {
+        height: '100%',
+        textAlignVertical: 'center',
+        fontSize: 20,
+        flexGrow: 1,       
+    },
+    quantity: {
+    },
+    date: {
+    },
+    category: {
+   
+    },
+    calories: {
+    },
+    info: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    wrapper: {
+        display: 'flex',
+        flexDirection: 'row',
+        fontSize: 18,
+        marginVertical: 3,
+    },
+    label: {
+        paddingRight: 8,
+    }
+})
+
+export default Item
+
+{/* const Item = ({name, exp, hasExp, handler}: Props) => {
     return (
         <View 
             style={{
@@ -12,14 +128,17 @@ const Item = (name: string, exp: string, hasExp: boolean, handler: (item:any)=>v
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                // alignContent: 'center',
+                // paddingVertical: 'auto',
                 paddingLeft: 10,
                 marginBottom: 10
             }}
         >
             <Text
                 style={{
-                    height: '100%',
+                    // height: '100%',
                     textAlignVertical: 'center',
+                    marginVertical: 'auto',
                     fontSize: 20,
                 }}
             >
@@ -32,6 +151,7 @@ const Item = (name: string, exp: string, hasExp: boolean, handler: (item:any)=>v
                     textAlignVertical: 'center',
                     fontSize: 20,
                     paddingRight: 2,
+                    marginVertical: 'auto',
                 }}
             >
                 {hasExp ? exp : ''}
@@ -40,7 +160,7 @@ const Item = (name: string, exp: string, hasExp: boolean, handler: (item:any)=>v
                 onPress={handler}
                 style={{
                     width: 50,
-                    height: '100%',
+                    // height: '100%',
                     borderTopRightRadius: 10,
                     borderBottomRightRadius: 10,
                     alignItems: 'center'
@@ -50,7 +170,8 @@ const Item = (name: string, exp: string, hasExp: boolean, handler: (item:any)=>v
                 <Text
                     style={{
                         textAlignVertical: 'center',
-                        height: '100%'
+                        // height: '100%',
+                        marginVertical: 'auto',
                     }}
                 >
                     X
@@ -60,4 +181,4 @@ const Item = (name: string, exp: string, hasExp: boolean, handler: (item:any)=>v
     )
 }
 
-export default Item;
+export default Item; */}
