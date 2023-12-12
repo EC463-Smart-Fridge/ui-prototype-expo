@@ -55,7 +55,7 @@ type EagerItem = {
   readonly calories?: string | null;
   readonly img_url?: string | null;
   readonly exp_date?: number | null;
-  readonly quantity?: string | null;
+  readonly quantity?: number | null;
 }
 
 type LazyItem = {
@@ -65,7 +65,7 @@ type LazyItem = {
   readonly calories?: string | null;
   readonly img_url?: string | null;
   readonly exp_date?: number | null;
-  readonly quantity?: string | null;
+  readonly quantity?: number | null;
 }
 
 export declare type Item = LazyLoading extends LazyLoadingDisabled ? EagerItem : LazyItem

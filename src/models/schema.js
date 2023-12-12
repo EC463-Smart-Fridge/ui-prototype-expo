@@ -114,7 +114,7 @@ export const schema = {
                 "quantity": {
                     "name": "quantity",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 }
@@ -177,5 +177,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "34b967cfcefda7daaf8c3c1b6e4ec86a"
+    "version": "9fd45fe2997295acb2cf74d6ca4f5a0a"
 };

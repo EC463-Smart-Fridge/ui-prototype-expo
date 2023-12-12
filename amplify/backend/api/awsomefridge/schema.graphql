@@ -25,7 +25,7 @@ type Item {
 	calories: String
 	img_url: String
 	exp_date: Int
-	quantity: String
+	quantity: Int
 }
 
 type Items {
