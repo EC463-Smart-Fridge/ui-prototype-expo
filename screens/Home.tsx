@@ -35,7 +35,7 @@ export default function Home() {
                 pk:'UID1',            
             }
         })
-        await new Promise(resolve => setTimeout(resolve, 3000)); // for demo only
+        // await new Promise(resolve => setTimeout(resolve, 3000)); // for demo only
 
         setItems((result['data']['getUserItems'])
         .filter((item: object) => item['name'] != null)
