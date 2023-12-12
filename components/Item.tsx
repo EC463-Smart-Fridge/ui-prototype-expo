@@ -1,14 +1,5 @@
 import React from 'react'
 import { Text, View, Pressable , StyleSheet} from "react-native"
-
-// interface Food {
-//     name: string;
-//     exp: string;
-//     hasExp: boolean;
-//     category: string;
-//     calories: number;
-//     quantity: number;
-// };
 interface Props {
     name: string;
     exp: string;
@@ -58,12 +49,16 @@ const Item = ({name, exp, hasExp, category, calories, quantity, handler}: Props)
                     borderTopRightRadius: 10,
                     borderBottomRightRadius: 10,
                     alignItems: 'center',
-                    paddingVertical: 'auto',}} 
+                    paddingVertical: 'auto',
+                    marginVertical: 'auto',
+                }} 
             >
                 <Text
                     style={{
                         textAlignVertical: 'center',
                         marginVertical: 'auto',
+                        paddingVertical: 'auto',
+                        verticalAlign: 'middle',
                     }}
                 >
                     X
@@ -103,6 +98,7 @@ const styles = StyleSheet.create({
     info: {
         display: 'flex',
         flexDirection: 'column',
+        flexShrink: 1,
     },
     wrapper: {
         display: 'flex',
@@ -116,69 +112,3 @@ const styles = StyleSheet.create({
 })
 
 export default Item
-
-{/* const Item = ({name, exp, hasExp, handler}: Props) => {
-    return (
-        <View 
-            style={{
-                width: '100%',
-                height: 64,
-                backgroundColor: 'rgba(128, 128, 128, 0.5)',
-                borderRadius: 10,
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                // alignContent: 'center',
-                // paddingVertical: 'auto',
-                paddingLeft: 10,
-                marginBottom: 10
-            }}
-        >
-            <Text
-                style={{
-                    // height: '100%',
-                    textAlignVertical: 'center',
-                    marginVertical: 'auto',
-                    fontSize: 20,
-                }}
-            >
-                {name}
-            </Text>
-            <View style={{flexGrow: 1,}}></View>
-            <Text
-                style={{
-                    height: '100%',
-                    textAlignVertical: 'center',
-                    fontSize: 20,
-                    paddingRight: 2,
-                    marginVertical: 'auto',
-                }}
-            >
-                {hasExp ? exp : ''}
-            </Text>
-            <Pressable 
-                onPress={handler}
-                style={{
-                    width: 50,
-                    // height: '100%',
-                    borderTopRightRadius: 10,
-                    borderBottomRightRadius: 10,
-                    alignItems: 'center'
-                    
-                }} 
-            >
-                <Text
-                    style={{
-                        textAlignVertical: 'center',
-                        // height: '100%',
-                        marginVertical: 'auto',
-                    }}
-                >
-                    X
-                </Text>
-            </Pressable>
-        </View>
-    )
-}
-
-export default Item; */}

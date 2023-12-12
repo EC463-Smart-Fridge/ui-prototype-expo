@@ -112,6 +112,7 @@ const NewItem = ({items, setItems}: Props) => {
                         borderBottomRightRadius: 10,
                         alignItems: 'center',
                         paddingVertical: 'auto',
+                        marginVertical: 'auto',
                     }}
                 >
                     <Text
@@ -119,6 +120,7 @@ const NewItem = ({items, setItems}: Props) => {
                             opacity: 0.75,
                             fontSize: 24,
                             marginVertical: 'auto',
+                            paddingVertical: 'auto',
                         }}
                     >
                         +
